@@ -17,17 +17,20 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ci-demo
 
       - name: Run unit & integration tests
         run: npx vitest run
+        working-directory: ci-demo
 
       - name: Build project
         run: npm run build
+        working-directory: ci-demo
 
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    environment: production   # ⏸ Manager approval
+    environment: production
 
     steps:
       - uses: actions/checkout@v4
@@ -38,9 +41,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ci-demo
 
       - name: Build project
         run: npm run build
+        working-directory: ci-demo
 
       - name: Deploy to Vercel
+        working-directory: ci-demo
         run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
