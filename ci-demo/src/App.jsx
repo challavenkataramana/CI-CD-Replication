@@ -9,7 +9,7 @@ function App() {
       {!user ? (
         <button onClick={() => setUser("manager")}>Login</button>
       ) : (
-        <h2>Welcome {user}</h2>
+        <h2>Welcome {user}, Have fun</h2>
       )}
     </div>
   );
